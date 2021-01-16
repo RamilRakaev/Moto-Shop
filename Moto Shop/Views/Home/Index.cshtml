@@ -1,0 +1,14 @@
+﻿@model HomeViewModel
+
+
+<br />
+<h2>Выбранные мотоциклы</h2>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Motorcycle moto in Model.FavMoto)
+        {
+            @Html.Partial("AllMoto", moto)
+
+        }
+    }
+</div>

@@ -1,0 +1,13 @@
+﻿
+<br />
+    <h2>Все мотоциклы</h2>
+    <h3>@Model.CurrModel</h3>
+    <div class="row mt-5 mb-2">
+        @{
+            foreach (Motorcycle moto in Model.AllMoto)
+            {
+                @Html.Partial("AllMoto",moto)
+                
+            }
+        }
+    </div>

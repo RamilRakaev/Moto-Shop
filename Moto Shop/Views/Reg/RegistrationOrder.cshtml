@@ -1,0 +1,7 @@
+﻿@model Moto_Shop.Data.Models.Order
+<form asp-controller="RegController" asp-action="RegistrationOrder" method="post">
+    <div>
+        <label asp-for="@Model.Name"></label>
+        <input type="text" asp-for="@Model.Name"/>
+    </div>
+</form>
