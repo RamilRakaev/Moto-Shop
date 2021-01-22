@@ -1,10 +1,20 @@
-﻿@model Motorcycle
+﻿@model Product
+
 
 <div class="col-lg-4">
     <img class="img-thumbnail" src="@Model.Image" alt="@Model.Image" />
     <h2>@Model.Name</h2>
-    <p>@Model.ShortDesc</p>
-    <h2>Модель: @Model.Name</h2>
+    <p>Краткое описание: @Model.ShortDesc</p>
+    <h5>Производитель: @Model.Manufacturer</h5>
     <p>Цена: @Model.Price.ToString("c")</p>
+    <p>Состояние: @Model.State</p>
+        @if (@Model.Avialable)
+        {
+        <p>Есть в наличии</p> 
+        }
+        else
+        {
+            <p>Нету в наличии</p>
+        }
     <p><a class="btn btn-warning" asp-controller="ShopBasket" asp-action="AddToBasket" asp-route-id="@Model.Id">Добавить в корзину</a></p>
 </div>

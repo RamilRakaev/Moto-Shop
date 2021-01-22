@@ -7,12 +7,12 @@ using Moto_Shop.Data.Models;
 
 namespace Moto_Shop.Controllers
 {
-    public class RegController:Controller
-    {
-        public ViewResult RegistrationOrder()
-        {
-            Order order = new Order();
-            return View(order);
-        }
-    }
+    //public class RegController:Controller
+    //{
+    //    public ViewResult RegistrationOrder()
+    //    {
+    //        Order order = new Order();
+    //        return View(order);
+    //    }
+    //}
 }

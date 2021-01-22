@@ -6,7 +6,7 @@
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public uint Price { get; set; }
-        public virtual Motorcycle MotoId { get; set; }
+        public virtual Product MotoId { get; set; }
         public virtual Order Order { get; set; }
     }
 }

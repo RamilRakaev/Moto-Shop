@@ -13,28 +13,28 @@ namespace Moto_Shop.Data
         public static void Initial(MotoDBContext db)
         {
             
-            if (!db.MotoModel.Any())
+            if (!db.MotoModels.Any())
             {
-                db.MotoModel.AddRange(MotoModels.Select(m => m.Value));
+                db.MotoModels.AddRange(MotoModels.Select(m => m.Value));
             }
             if (!db.Moto.Any())
             {
-                db.Moto.AddRange(new Motorcycle() {Manufacturer="2",Name="Мотик",
-                LongDesc="2",ShortDesc="2",
+                db.Moto.AddRange(new Product() {Manufacturer="2",Name="Мотик",
+                LongDesc="2",
                     Image= "/img/Honda Africa Twin.jpg",
                     Price=255,IsFavorite=true,Avialable=true,
-                    Color="3",Mileage=2000,State="good",Model=MotoModels["2"]
+                    Color="3",Mileage=2000,State="good",Model=MotoModels["Эндуро"]
                 });
             }
             db.SaveChanges();
         }
 
-        private static Dictionary<string, ModelMotorcycle> motoModel;
+        private static Dictionary<string, ModelMotorcycle> motoModels;
         public static Dictionary<string, ModelMotorcycle> MotoModels
         {
             get
             {
-                if (motoModel == null)
+                if (motoModels == null)
                 {
                     var list = new ModelMotorcycle[]
                     {
@@ -45,13 +45,13 @@ namespace Moto_Shop.Data
                         Cylinders=4,Ticks=2,Transmission="fsdf",
                         DriveUnit="fsdf"}
                     };
-                    motoModel = new Dictionary<string, ModelMotorcycle>();
+                    motoModels = new Dictionary<string, ModelMotorcycle>();
                     foreach (ModelMotorcycle el in list)
                     {
-                        motoModel.Add(el.ModelName, el);
+                        motoModels.Add(el.ModelName, el);
                     }
                 }
-                return motoModel;
+                return motoModels;
             }
         }
     }

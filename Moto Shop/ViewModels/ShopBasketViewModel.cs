@@ -8,6 +8,6 @@ namespace Moto_Shop.ViewModels
 {
     public class ShopBasketViewModel
     {
-        public ShopBasket SBask { get; set; }
+        public ShopBasket ShopBask { get; set; }
     }
 }

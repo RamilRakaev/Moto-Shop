@@ -12,12 +12,12 @@ namespace Moto_Shop.Controllers
     public class OrderController:Controller
     {
         private readonly IAllOrders AllOrders;
-        private readonly ShopBasket SBas;
+        private readonly ShopBasket ShopB;
 
         public OrderController(IAllOrders motoRepos, ShopBasket shopBasket)
         {
             AllOrders = motoRepos;
-            SBas = shopBasket;
+            ShopB = shopBasket;
         }
 
         [HttpGet]
@@ -25,12 +25,13 @@ namespace Moto_Shop.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult RegOrder(Order order)
         {
-            SBas.ListShopItems = SBas.GetItems();
+            ShopB.ListShopItems = ShopB.GetItems();
 
-            if (SBas.ListShopItems.Count == 0)
+            if (ShopB.ListShopItems.Count == 0)
             {
                 ModelState.AddModelError("","Корзина пуста!");
             }

@@ -28,7 +28,7 @@ namespace Moto_Shop.Controllers
 
             var obj = new ShopBasketViewModel
             {
-                SBask = SBasket
+                ShopBask = SBasket
             };
             return View(obj);
         }

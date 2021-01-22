@@ -10,8 +10,8 @@ using Moto_Shop.Data;
 namespace Moto_Shop.Migrations
 {
     [DbContext(typeof(MotoDBContext))]
-    [Migration("20210101174612_Migration5")]
-    partial class Migration5
+    [Migration("20210121183159_Migration1")]
+    partial class Migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,25 @@ namespace Moto_Shop.Migrations
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Moto_Shop.Data.Models.Equipment.Clothing", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Brand");
+
+                    b.Property<string>("ModelName");
+
+                    b.Property<string>("Species");
+
+                    b.Property<string>("Weight");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clothings");
+                });
 
             modelBuilder.Entity("Moto_Shop.Data.Models.ModelMotorcycle", b =>
                 {
@@ -55,7 +74,7 @@ namespace Moto_Shop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MotoModel");
+                    b.ToTable("MotoModels");
                 });
 
             modelBuilder.Entity("Moto_Shop.Data.Models.MotoShopItem", b =>
@@ -64,15 +83,13 @@ namespace Moto_Shop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MotoId");
+                    b.Property<int>("MotoId");
 
                     b.Property<int>("Price");
 
                     b.Property<string>("ShopBasketId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MotoId");
 
                     b.ToTable("MotoShopItems");
                 });
@@ -83,19 +100,31 @@ namespace Moto_Shop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Delivery");
+                    b.Property<string>("Delivery")
+                        .IsRequired()
+                        .HasMaxLength(3);
 
-                    b.Property<string>("EmailAdress");
+                    b.Property<string>("DeliveryAdress")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("HomeAdress");
+                    b.Property<string>("EmailAdress")
+                        .IsRequired()
+                        .HasMaxLength(25);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(25);
 
-                    b.Property<string>("Number");
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("OrderTime");
 
-                    b.Property<string>("Surname");
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(25);
 
                     b.HasKey("Id");
 
@@ -137,6 +166,8 @@ namespace Moto_Shop.Migrations
 
                     b.Property<bool>("IsFavorite");
 
+                    b.Property<bool>("IsMoto");
+
                     b.Property<string>("LongDesc");
 
                     b.Property<string>("Manufacturer");
@@ -144,6 +175,10 @@ namespace Moto_Shop.Migrations
                     b.Property<int>("Mileage");
 
                     b.Property<int>("ModelID");
+
+                    b.Property<string>("ModelName");
+
+                    b.Property<string>("Name");
 
                     b.Property<int>("Price");
 
@@ -158,13 +193,6 @@ namespace Moto_Shop.Migrations
                     b.ToTable("Moto");
                 });
 
-            modelBuilder.Entity("Moto_Shop.Data.Models.MotoShopItem", b =>
-                {
-                    b.HasOne("Moto_Shop.Data.Models.Product", "Moto")
-                        .WithMany()
-                        .HasForeignKey("MotoId");
-                });
-
             modelBuilder.Entity("Moto_Shop.Data.Models.OrderDetails", b =>
                 {
                     b.HasOne("Moto_Shop.Data.Models.Order", "Order")
@@ -172,7 +200,7 @@ namespace Moto_Shop.Migrations
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Moto_Shop.Data.Models.Product", "Prod")
+                    b.HasOne("Moto_Shop.Data.Models.Product", "MotoId")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -181,7 +209,7 @@ namespace Moto_Shop.Migrations
             modelBuilder.Entity("Moto_Shop.Data.Models.Product", b =>
                 {
                     b.HasOne("Moto_Shop.Data.Models.ModelMotorcycle", "Model")
-                        .WithMany("Moto")
+                        .WithMany("Product")
                         .HasForeignKey("ModelID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -24,40 +24,37 @@ namespace Moto_Shop.Controllers
         [Route("Moto/ListProducts/{model}")]
         public ViewResult ListProducts(string model)
         {
-            string _model = model;
-            IEnumerable<Motorcycle> motorcycles=null;
+            List<Product> motorcycles=new List<Product>();
             string currModel = "";
             if (string.IsNullOrEmpty(model))
             {
-                motorcycles = AllProducts.Products.OrderBy(m => m.Id);
+                motorcycles = AllProducts.Products.OrderBy(m => m.Id).ToList();
             }
             else
             {
-                if (string.Equals("Enduro", model, StringComparison.OrdinalIgnoreCase))
+                if (model == "Motorcycle")
                 {
-                    motorcycles = AllProducts.Products.Where(m => m.Model.ModelName.Equals("Эндуро")).OrderBy(m => m.Id);
-                    currModel = "Эндуро";
+                    foreach (Product product in AllProducts.Products)
+                    {
+                        if (product.IsMoto)
+                            motorcycles.Add(product);
+                    }
+                    currModel = "Мотоциклы";
                 }
-                else if (string.Equals("Classic", model, StringComparison.OrdinalIgnoreCase))
+                else if(model=="Equipment")
                 {
-                    motorcycles = AllProducts.Products.Where(m => m.Model.ModelName.Equals("Классический")).OrderBy(m => m.Id);
-                    currModel = "Классический";
+                    foreach (Product product in AllProducts.Products)
+                    {
+                        if (!product.IsMoto)
+                            motorcycles.Add(product);
+                    }
+                    currModel = "Экипировка";
                 }
-                else if (string.Equals("Chopper", model, StringComparison.OrdinalIgnoreCase))
-                {
-                    motorcycles = AllProducts.Products.Where(m => m.Model.ModelName.Equals("Чоппер")).OrderBy(m => m.Id);
-                    currModel = "Чоппер";
-                }
-                else if (string.Equals("Sport", model, StringComparison.OrdinalIgnoreCase))
-                {
-                    motorcycles = AllProducts.Products.Where(m => m.Model.ModelName.Equals("Спортивный")).OrderBy(m => m.Id);
-                    currModel = "Спортивный";
-                }
-                
+                    
             }
 
-            var motoObj = new MotoListViewModel { AllMoto = motorcycles, CurrModel = currModel };
-            ViewBag.Title = "Страница с мотоциклами";
+            var motoObj = new ProductListViewModel { AllMoto = motorcycles, CurrModel = currModel };
+            ViewBag.Title = "Страница с товарами";
 
             return View(motoObj);
         }

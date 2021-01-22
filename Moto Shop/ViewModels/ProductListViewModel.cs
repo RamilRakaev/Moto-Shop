@@ -6,9 +6,9 @@ using Moto_Shop.Data.Models;
 
 namespace Moto_Shop.ViewModels
 {
-    public class MotoListViewModel
+    public class ProductListViewModel
     {
-        public IEnumerable<Motorcycle> AllMoto { get; set; }
+        public IEnumerable<Product> AllMoto { get; set; }
 
         public string CurrModel {get; set;}
     }

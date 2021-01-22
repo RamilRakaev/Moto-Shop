@@ -14,6 +14,6 @@ namespace Moto_Shop.Data.Repository
         {
             this.motoDB = motoDBContext;
         }
-        public IEnumerable<ModelMotorcycle> AllModels => motoDB.MotoModel;
+        public IEnumerable<ModelMotorcycle> AllModels => motoDB.MotoModels;
     }
 }

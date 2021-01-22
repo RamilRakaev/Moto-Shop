@@ -29,7 +29,7 @@ namespace Moto_Shop.Data.Models
             return new ShopBasket(context) { ShopBasketId = shopBasketId };
         }
 
-        public void AddToMoto(Motorcycle moto)
+        public void AddToMoto(Product moto)
         {
             this.motoDB.MotoShopItems.Add(new MotoShopItem()
             {

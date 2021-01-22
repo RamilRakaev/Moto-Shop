@@ -12,7 +12,7 @@ namespace Moto_Shop.Data.Models
         public int MotoId { get; set; }
 
         [NotMapped]
-        public Motorcycle Moto { get; set; }
+        public Product Moto { get; set; }
         public int Price { get; set; }
 
         public string ShopBasketId { get; set; }

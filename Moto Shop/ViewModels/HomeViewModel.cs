@@ -8,6 +8,6 @@ namespace Moto_Shop.ViewModels
 {
     public class HomeViewModel
     {
-        public IEnumerable<Motorcycle> FavMoto { get; set; }
+        public IEnumerable<Product> FavMoto { get; set; }
     }
 }

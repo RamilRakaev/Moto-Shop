@@ -8,8 +8,8 @@ namespace Moto_Shop.Data.Interfaces
 {
     public interface IAllProducts
     {
-        IEnumerable<Motorcycle> Products { get;  }
-        IEnumerable<Motorcycle> GetFavoriteMoto { get;}
-        Motorcycle GetMoto(int Id);
+        IEnumerable<Product> Products { get;  }
+        IEnumerable<Product> GetFavoriteMoto { get;}
+        Product GetMoto(int Id);
     }
 }

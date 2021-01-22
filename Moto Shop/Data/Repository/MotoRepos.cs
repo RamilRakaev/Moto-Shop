@@ -15,11 +15,11 @@ namespace Moto_Shop.Data.Repository
         {
             this.motoDB = motoDBContext;
         }
-        public IEnumerable<Motorcycle> Products => motoDB.Moto.Include(c=>c.Model);
+        public IEnumerable<Product> Products => motoDB.Moto.Include(c=>c.Model);
 
-        public IEnumerable<Motorcycle> GetFavoriteMoto => motoDB.Moto.Where(m => m.IsFavorite).Include(m => m.Model);
+        public IEnumerable<Product> GetFavoriteMoto => motoDB.Moto.Where(m => m.IsFavorite).Include(m => m.Model);
 
-        public Motorcycle GetMoto(int MotoId) => motoDB.Moto.FirstOrDefault(m => m.Id == MotoId);
+        public Product GetMoto(int MotoId) => motoDB.Moto.FirstOrDefault(m => m.Id == MotoId);
        
     }
 }

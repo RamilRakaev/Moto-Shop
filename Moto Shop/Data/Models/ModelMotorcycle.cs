@@ -23,7 +23,7 @@ namespace Moto_Shop.Data.Models
         public string DriveUnit { get; set; }
 
 
-        public List<Motorcycle> Moto { get; set; }
+        public List<Product> Product { get; set; }
 
     }
 }
